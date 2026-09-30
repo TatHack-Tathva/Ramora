@@ -16,7 +16,7 @@ Ramora supports basic key-value operations, pipelined requests, TTL-based expira
 
 ### In-memory key-value store
 
-- supports GET, SET, and DEL operation for managing data
+- supports GET, SET, and DEL operations for managing data
 - Predictable memory usage
 
 ### TTL & Expiration
@@ -28,7 +28,7 @@ Ramora supports basic key-value operations, pipelined requests, TTL-based expira
 ### Connection management
 
 - Idle connection tracking using doubly-linked lists
-- Connection object pooling (bounded) (custom built reusing mechanism)
+- Connection object pooling (bounded) (custom-built reusing mechanism)
 - Automatic cleanup of inactive connections
 
 ### Pipelining support
@@ -50,7 +50,7 @@ Ramora is intentionally built with explicit systems-level control:
 - Networking: TCP, non-blocking sockets
 - Concurrency model: single-threaded, single-core
 
-### Data structures:
+### Data structures
 
 - Hash table for key storage (Uses progressive rehashing to cap worst case latency)
 - Min-heap for TTL management
@@ -66,44 +66,44 @@ Ramora is intentionally built with explicit systems-level control:
 
 ```
 Ramora/
-├── src/
-│   ├── server.c
-│   ├── buf.c
-│   ├── cmd_proc.c
-│   ├── config.c
-│   ├── conn.c
-│   ├── g_data.c
-│   ├── heap.c
-│   ├── hmap.c
-│   ├── logging_helper.c
-│   ├── oper.c
-│   ├── response.c
-│   ├── timer.c
-│   └── vtr.c
-├── include/
-│   ├── buf.h
-│   ├── cmd_proc.h
-│   ├── config.h
-│   ├── conn.h
-│   ├── dlist.h
-│   ├── g_data.h
-│   ├── heap.h
-│   ├── hmap.h
-│   ├── logging_helper.h
-│   ├── oper.h
-│   ├── response.h
-│   ├── timer.h
-│   └── vtr.h
-├── client/
-│   └── client.c
-├── conf/
-│   └── ramora.conf
-├── tests/
-│   ├── testing_report.txt
-│   └── test.c
-├── Makefile
-├── LICENSE
-├── README.md
+'''src/
+'''server.c
+'''buf.c
+'''cmd_proc.c
+'''config.c
+'''conn.c
+'''g_data.c
+'''heap.c
+'''hmap.c
+'''logging_helper.c
+'''oper.c
+'''response.c
+'''timer.c
+'''vtr.c
+'''include/
+'''buf.h
+'''cmd_proc.h
+'''config.h
+'''conn.h
+'''dlist.h
+'''g_data.h
+'''heap.h
+'''hmap.h
+'''logging_helper.h
+'''oper.h
+'''response.h
+'''timer.h
+'''vtr.h
+'''client/
+'''client.c
+'''conf/
+'''ramora.conf
+'''tests/
+'''testing_report.txt
+'''test.c
+'''Makefile
+'''LICENSE
+'''README.md
 ```
 
 ## Performance
@@ -112,7 +112,7 @@ Ramora is benchmarked using a custom client with configurable pipeline width, cl
 
 The testing report of Ramora with Redis is present in `tests/testing_report.txt`
 
-Report have showed that Ramora is `12%` faster then Redis.
+Reports showed that Ramora is `12%` faster then Redis.
 
 ## Configuration
 
@@ -120,7 +120,7 @@ Ramora is configured via a server-side config file, allowing control over:
 
 - Bind address
 - Port
-- Logfile's path
+- Log file path
 - Maximum load factor of hashmap
 - Migrating load of hashmap when rehashing
 - Initial hashmap capacity
@@ -128,7 +128,7 @@ Ramora is configured via a server-side config file, allowing control over:
 - Initial buffer capacity
 - Maximum buffer capacity
 - Maximum allowed payload size
-- Maximum pooled connection object's count
+- Maximum pooled connection object count
 - Idle timeout for connections
 - Read chunk size
 - Maximum events that can be processed by one epoll cycle
@@ -141,7 +141,7 @@ To use a custom file, see the usage section below.
 
 ### To build binaries
 
-run the below command in the root directory of this project.
+Run the below command in the root directory of this project.
 ```
 make
 ```
@@ -154,12 +154,12 @@ This will create three binaries:
 
 ### To clean up
 
-run the below command to clean up all of the build files.
+Run the below command to clean up all of the build files.
 ```
 make clean
 ```
 
-This will remove all the three binaries along with the build directory
+This will remove all  three binaries along with the build directory
 
 ## Usage
 
@@ -172,38 +172,38 @@ To use the server, just run the `ramora-server` binary.
 
 This will start the server.
 
-If you want to run the server with custom config file, run the server with path of config file as argument.
+If you want to run the server with custom config file, run the server with path of config file as an argument.
 ```
 ./ramora-server path/to/config/ramora.conf
-```
+'''
 
 ### Client
 
-To use the client, just run the `ramora-client` binary (If you don't want error then make sure the server is already running).
+To use the client, just run the `ramora-client` binary (make sure the server is already running to avoid errors).
 
-```
+'''
 ./ramora-client
-```
+'''
 
-This will connect you to `127.0.0.1:5000`.
+This will connect you to `127.0.0.1:5000:
 
-If you want to connect to some other host or port, use:
-```
+To connect to a different host or port, run:
+'''
 ./ramora-client -h <ip_of_host> -p <port>
-```
+'''
 
 ### Test
 
-To use the test file, just run `ramora-test` binary.
-```
+To run the tests, execute the `ramora-test` binary:
+'''
 ./ramora-test
-```
+'''
 
-For help and option, run the binary with `-h` flag:
+For help and available, run the binary with `-h` flag:
 
-```
+'''
 ./ramora-test -h
-```
+'''
 
 ## Author
 
